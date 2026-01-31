@@ -9,7 +9,7 @@ class LottoGenerator extends HTMLElement {
             <style>
                 .generator-title {
                     font-size: 2rem;
-                    color: var(--primary-color);
+                    color: var(--text-color);
                     margin-bottom: 1rem;
                 }
                 .numbers-container {
@@ -23,7 +23,7 @@ class LottoGenerator extends HTMLElement {
                     height: 50px;
                     border-radius: 50%;
                     background-color: var(--secondary-color);
-                    color: var(--white);
+                    color: var(--background-color);
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -94,3 +94,15 @@ class LottoGenerator extends HTMLElement {
 }
 
 customElements.define('lotto-generator', LottoGenerator);
+
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = body.getAttribute('data-theme');
+    if (currentTheme === 'dark') {
+        body.removeAttribute('data-theme');
+    } else {
+        body.setAttribute('data-theme', 'dark');
+    }
+});

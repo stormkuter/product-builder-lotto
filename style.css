@@ -7,15 +7,37 @@
     --white: #fff;
 }
 
+[data-theme="dark"] {
+    --primary-color: #FF4081;
+    --secondary-color: #FFC107;
+    --background-color: #333;
+    --text-color: #f0f0f0;
+    --white: #444;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--background-color);
     background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 main {
