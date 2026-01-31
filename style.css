@@ -28,10 +28,15 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-#theme-toggle {
+.top-buttons {
     position: absolute;
     top: 1rem;
     right: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+#theme-toggle, #contact-btn {
     background-color: var(--primary-color);
     color: var(--white);
     border: none;
@@ -53,3 +58,67 @@ lotto-generator {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input, form textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+

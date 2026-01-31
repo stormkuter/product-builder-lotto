@@ -106,3 +106,21 @@ themeToggle.addEventListener('click', () => {
         body.setAttribute('data-theme', 'dark');
     }
 });
+
+const contactModal = document.getElementById('contact-modal');
+const contactBtn = document.getElementById('contact-btn');
+const closeBtn = document.querySelector('.close-btn');
+
+contactBtn.addEventListener('click', () => {
+    contactModal.style.display = 'block';
+});
+
+closeBtn.addEventListener('click', () => {
+    contactModal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target == contactModal) {
+        contactModal.style.display = 'none';
+    }
+});
