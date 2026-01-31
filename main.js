@@ -12,11 +12,23 @@ class LottoGenerator extends HTMLElement {
                     color: var(--text-color);
                     margin-bottom: 1rem;
                 }
+                .controls {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 1rem;
+                    margin-bottom: 2rem;
+                }
                 .numbers-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    margin-bottom: 2rem;
+                }
+                .number-set {
                     display: flex;
                     justify-content: center;
                     gap: 1rem;
-                    margin-bottom: 2rem;
                 }
                 .number-ball {
                     width: 50px;
@@ -63,6 +75,16 @@ class LottoGenerator extends HTMLElement {
             </style>
 
             <h2 class="generator-title">Lotto Number Generator</h2>
+            <div class="controls">
+                <label for="num-sets">Number of Sets:</label>
+                <select id="num-sets">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected>5</option>
+                </select>
+            </div>
             <div class="numbers-container">
                 <!-- Numbers will be generated here -->
             </div>
@@ -76,20 +98,28 @@ class LottoGenerator extends HTMLElement {
 
     generateNumbers() {
         const numbersContainer = this.shadowRoot.querySelector('.numbers-container');
+        const numSets = this.shadowRoot.getElementById('num-sets').value;
         numbersContainer.innerHTML = ''; // Clear previous numbers
-        const numbers = new Set();
-        while (numbers.size < 6) {
-            const randomNumber = Math.floor(Math.random() * 45) + 1;
-            numbers.add(randomNumber);
-        }
 
-        Array.from(numbers).sort((a,b) => a-b).forEach((number, index) => {
-            const ball = document.createElement('div');
-            ball.classList.add('number-ball');
-            ball.textContent = number;
-            ball.style.animationDelay = `${index * 0.1}s`;
-            numbersContainer.appendChild(ball);
-        });
+        for (let i = 0; i < numSets; i++) {
+            const numbers = new Set();
+            while (numbers.size < 6) {
+                const randomNumber = Math.floor(Math.random() * 45) + 1;
+                numbers.add(randomNumber);
+            }
+            
+            const numberSet = document.createElement('div');
+            numberSet.classList.add('number-set');
+
+            Array.from(numbers).sort((a,b) => a-b).forEach((number, index) => {
+                const ball = document.createElement('div');
+                ball.classList.add('number-ball');
+                ball.textContent = number;
+                ball.style.animationDelay = `${index * 0.1}s`;
+                numberSet.appendChild(ball);
+            });
+            numbersContainer.appendChild(numberSet);
+        }
     }
 }
 
